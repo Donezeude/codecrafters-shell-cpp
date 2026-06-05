@@ -11,6 +11,6 @@ int main() {
   std:: string input = "";
   std::cin >> input;
 	
-  std::string error_msg = "{" + input + "}: command not found";
+  std::string error_msg = input + ": command not found";
   std::cerr << error_msg << "\n";
 }
