@@ -14,6 +14,10 @@ int main() {
 	  std::string input{""};	  
 	  std::getline(std::cin, input);
 	  
-	  std::cerr << input + ": command not found" << std::endl;
+	  if(input == "exit")
+	  	break;
+	  else
+	  	std::cerr << input + ": command not found" << std::endl;
   }
+  return 0;
 }
