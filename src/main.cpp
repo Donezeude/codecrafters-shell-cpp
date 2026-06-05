@@ -20,13 +20,15 @@ int main() {
 	  else if(input.find("echo") == 0)
 		std::cout << input.substr(input.find(" ")+1) << std::endl;
 	 
-	  else if((input.find("type") == 0) &&
-		  (input.find(" ") != std::string::npos) &&
-	          (input.substr(input.find(" ")+1) == "echo"||
-		   input.substr(input.find(" ")+1) == "exit"||
-		   input.substr(input.find(" ")+1) == "type"))
-		std::cout << input.substr(input.find(" ")+1) + " is a shell builtin" << std::endl;
-
+	  else if((input.find("type") == 0) && (input.find(" ") != std::string::npos)) 
+	  {
+		if (input.substr(input.find(" ")+1) == "echo"||
+		    input.substr(input.find(" ")+1) == "exit"||
+		    input.substr(input.find(" ")+1) == "type")
+			std::cout << input.substr(input.find(" ")+1) + " is a shell builtin" << std::endl;
+		else
+			std::cout << input.substr(input.find(" ")+1) + ": not found" << std::endl;
+	  }
 		
 
 	  else
