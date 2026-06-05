@@ -16,6 +16,10 @@ int main() {
 	  
 	  if(input == "exit")
 	  	break;
+
+	  else if(input.find("echo") == 0)
+		std::cout << input.substr(input.find(" ")+1) << std::endl;
+
 	  else
 	  	std::cerr << input + ": command not found" << std::endl;
   }
