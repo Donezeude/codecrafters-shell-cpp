@@ -86,7 +86,11 @@ int main() {
 					execv(command_path.c_str(), args);
 				}
 				else
+				{
 					wait(nullptr);
+					broke_early = true;
+					break;
+				}
 			}
 		}
 		if(!broke_early)
