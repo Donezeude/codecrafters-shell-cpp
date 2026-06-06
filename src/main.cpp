@@ -3,6 +3,7 @@
 #include <cstdlib> //for environment variables
 #include <sstream>
 #include <filesystem>
+#include <unistd.h>
 
 namespace fs = std::filesystem;
 
@@ -49,16 +50,11 @@ int main() {
 			        fs::path phrase_path = formated_dir / phrase_after;
 				//VARIABLES END
 
-				if(fs::exists(phrase_path))
+				if(access(phrase_path.c_str(), X_OK)==0)		
 				{
-					fs::perms p = fs::status(phrase_path).permissions();
-
-					if((p & fs::perms::owner_exec) != fs::perms::none)
-					{
-						std::cout << phrase_after + " is " + phrase_path.string() << std::endl;
-						broke_early = true;
-						break;
-					}
+					std::cout << phrase_after + " is " + phrase_path.string() << std::endl;
+					broke_early = true;
+					break;
 				}
 
 			}
