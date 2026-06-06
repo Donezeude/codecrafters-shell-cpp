@@ -71,7 +71,7 @@ int main() {
 		while(std::getline(path_ss, dir, ':'))
 		{
 			//VARIABLES
-			fs::path formated_dir(dir)
+			fs::path formated_dir(dir);
 			fs::path command_path = formated_dir / command;
 			//VARIABLES END
 			
