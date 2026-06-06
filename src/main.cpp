@@ -82,7 +82,7 @@ int main() {
 				pid_t pid = fork();
 				if(pid == 0)
 				{
-					char* args[] = {command_string.data(), phrase, nullptr};
+					char* args[] = {command_string.data(), phrase.string(), nullptr};
 					execv(command_path.c_str(), args);
 				}
 				else
