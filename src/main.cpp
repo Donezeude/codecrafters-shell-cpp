@@ -73,6 +73,8 @@ int main() {
 			//VARIABLES
 			fs::path formated_dir(dir);
 			fs::path command_path = formated_dir / command;
+			
+			std::string command_string{command_path.string()};
 			//VARIABLES END
 			
 			if(access(command_path.c_str(), X_OK)==0)
@@ -80,7 +82,7 @@ int main() {
 				pid_t pid = fork();
 				if(pid == 0)
 				{
-					char* args[] = {command_path.data(), phrase, nullptr};
+					char* args[] = {command_string.data(), phrase, nullptr};
 					execv(command_path.c_str(), args);
 				}
 				else
