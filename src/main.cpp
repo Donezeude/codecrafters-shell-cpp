@@ -80,8 +80,8 @@ int main() {
 				pid_t pid = fork();
 				if(pid == 0)
 				{
-					char* args[] = {command_path.string(), phrase, nullptr};
-					execv(command_path.string(), args);
+					char* args[] = {command_path.data(), phrase, nullptr};
+					execv(command_path.c_str(), args);
 				}
 				else
 					wait(nullptr);
