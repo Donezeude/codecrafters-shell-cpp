@@ -8,7 +8,7 @@
 
 namespace fs = std::filesystem;
 
-pid_t exec_program(std::string command, std::string phrase, std::string path)
+pid_t exec_program(std::string command, std::string input, std::string path)
 {
 	std::stringstream path_ss(path);
 	std::string dir{""};
@@ -23,14 +23,14 @@ pid_t exec_program(std::string command, std::string phrase, std::string path)
 
 		if(access(command_path.c_str(), X_OK)==0)
 		{
-			std::stringstream phrase_ss(phrase);
+			std::stringstream input_ss(input);
 			
 			std::vector<char*> args;
 			std::vector<std::string> elements;
 			std::string el{""};
 
 
-			while(std::getline(phrase_ss, el, ' '))
+			while(std::getline(input_ss, el, ' '))
 				elements.push_back(el);
 			
 			for(std::string& e : elements)

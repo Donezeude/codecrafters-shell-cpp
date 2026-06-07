@@ -51,7 +51,7 @@ int main() {
 		
 	else
 	{
-	  	if(exec_program(command, phrase, path) == -1)
+	  	if(exec_program(command, input, path) == -1)
 			std::cerr << input + ": command not found" << std::endl;
 	}
   }
