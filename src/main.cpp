@@ -7,7 +7,6 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-namespace fs = std::filesystem;
 
 int main() {
   // Flush after every std::cout / std:cerr
