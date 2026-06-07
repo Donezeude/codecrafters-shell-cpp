@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string>
 #include <cstdlib> //for environment variables
-#include <sstream>
-#include <filesystem>
 #include <unistd.h>
 #include <sys/wait.h>
 
@@ -28,9 +26,6 @@ int main() {
 	std::string command{input.substr(0, input.find(" "))};
 	std::string phrase{input.substr(input.find(" ")+1)};  
 	std::string path{std::getenv("PATH") ? std::getenv("PATH"):""};
-	std::string dir{""};
-
-	std::stringstream path_ss(path);
 	//VARIABLES END
 	
 	if(input == "exit")
