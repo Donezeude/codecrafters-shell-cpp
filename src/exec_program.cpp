@@ -4,13 +4,17 @@
 #include <sstream>
 #include <sys/wait.h>
 #include <filesystem>
+#include <vector>
 
 namespace fs = std::filesystem;
 
-void exec_program(std::string command, std::string path)
+pid_t exec_program(std::string command, std::string phrase, std::string path)
 {
 	std::stringstream path_ss(path);
 	std::string dir{""};
+
+	std::vector<std::string> elements;
+	std::string el{""};
 
 	while(std::getline(path_ss, dir, ':'))
 	{
@@ -18,6 +22,27 @@ void exec_program(std::string command, std::string path)
 		fs::path command_path = formated_dir / command;
 
 		if(access(command_path.c_str(), X_OK)==0)
-			std::cout << command << std::endl;
+		{
+			std::stringstream phrase_ss(phrase);
+			
+			std::vector<char*> args;
+			std::vector<std::string> elements;
+			std::string el{""};
+
+
+			while(std::getline(phrase_ss, el, ' '))
+				elements.push_back(el);
+			
+			for(std::string& e : elements)
+				args.push_back(e.data());
+			args.push_back(nullptr);
+
+			pid_t pid = fork();
+			if(pid == 0)
+				execv(command_path.c_str(), args.data());
+			else
+				return wait(nullptr);
+		}
 	}
+	return -1;
 }
