@@ -1,5 +1,5 @@
 #include "exec_program.hpp"
-#include <iostream>
+
 #include <string>
 #include <sstream>
 #include <sys/wait.h>
@@ -8,7 +8,7 @@
 
 namespace fs = std::filesystem;
 
-pid_t exec_program(std::string command, std::string input, std::string path)
+pid_t exec_program(const std::string& command, const std::string& input, const std::string& path)
 {
 	std::stringstream path_ss(path);
 	std::string dir{""};
