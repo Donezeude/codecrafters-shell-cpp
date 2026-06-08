@@ -35,7 +35,7 @@ int main() {
 		std::cout << phrase << std::endl;
 
 	else if(input.find("pwd") == 0)
-		std::cout << std::filesystem::current_path() << std::endl;
+		std::cout << std::filesystem::current_path().string() << std::endl;
 
 	else if((input.find("type") == 0) && (input.find(" ") != std::string::npos)) 
 	{
