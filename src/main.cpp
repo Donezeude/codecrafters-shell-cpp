@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib> //for environment variables
+#include <filesystem>
 #include <unistd.h>
 #include <sys/wait.h>
 
@@ -32,7 +33,10 @@ int main() {
 
 	else if(input.find("echo") == 0)
 		std::cout << phrase << std::endl;
-	 
+
+	else if(input.find("pwd") == 0)
+		std::cout << std::filesystem::current_path() << std::endl;
+
 	else if((input.find("type") == 0) && (input.find(" ") != std::string::npos)) 
 	{
 		std::string result{type_feature(phrase,path)};
