@@ -13,7 +13,7 @@ std::string type_feature(const std::string& phrase, const std::string& path)
 	std::string dir{""};
 	
 	
-	if(phrase == "echo"||phrase == "exit"||phrase == "type"||phrase == "pwd")
+	if(phrase == "echo"||phrase == "exit"||phrase == "type"||phrase == "pwd"||phrase == "cd")
 		return phrase + " is a shell builtin";
 
 	else
