@@ -30,7 +30,10 @@ int main() {
 	std::string phrase{input.substr(input.find(" ")+1)};  
 	std::string path{std::getenv("PATH") ? std::getenv("PATH"):""};
 	//VARIABLES END
-	
+
+	if(input.empty())
+		continue;
+
 	if(input == "exit")
 		break;
 
