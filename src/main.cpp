@@ -55,7 +55,7 @@ int main() {
 		fs::path result{change_dir(phrase)};
 
 		if(result.empty())
-			std::cerr << "cd: " + result.string() + ": No such file or directory" << std::endl;
+			std::cerr << "cd: " + phrase + ": No such file or directory" << std::endl;
 		else
 			fs::current_path(result);
 	}
