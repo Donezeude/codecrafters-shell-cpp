@@ -15,8 +15,34 @@ std::string single_quotes(std::string& phrase)
 
 std::string double_quotes(std::string& phrase)
 {
-	phrase.erase(std::remove(phrase.begin(), phrase.end(), '\"'), phrase.end());
-	return phrase;
+	bool in_double_quotes{false};
+	bool last_was_space{true};
+
+	std::string result{""};
+
+	for(char c : phrase)
+	{
+		if(c == '\"')
+			in_double_quotes = !in_double_quotes;
+
+		else if(c == ' ' && !in_double_quotes)
+		{
+			if(!last_was_space)
+				result += ' ';
+			last_was_space = true;
+			continue;
+		}
+		else
+		{
+			result += c;
+			last_was_space = false;
+		}
+	}
+
+	while(!result.empty() && result.back() == ' ')
+		result.pop_back();
+	
+	return result;
 }
 
 std::string collapse_space(std::string& phrase)
