@@ -21,8 +21,6 @@ std::string double_quotes(std::string& phrase)
 
 std::string collapse_space(std::string& phrase)
 {
-	phrase = double_quotes(phrase);
-
 	std::stringstream phrase_ss{phrase};
 
 	std::string result{""};
