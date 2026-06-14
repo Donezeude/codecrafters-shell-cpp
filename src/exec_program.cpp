@@ -34,6 +34,10 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 
 			while(std::getline(input_ss, el, '\''))
 				elements.push_back(el);
+
+			for(const auto& tim : elements)
+			{ std::cout << tim << "      "; }
+			std::cout << std::endl;
 			
 			for(std::string& e : elements)
 				args.push_back(e.data());
