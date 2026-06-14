@@ -40,12 +40,9 @@ int main() {
 
 	else if(input.find("echo") == 0)
 	{
-		if(phrase.find('\'') != std::string::npos)
-			std::cout << single_quotes(phrase) << std::endl;
+		if(phrase.find('\'') != std::string::npos || phrase.find('"') != std::string::npos)
+			std::cout << quotes(phrase) << std::endl;
 
-		else if(phrase.find('\"') != std::string::npos)
-			std::cout << double_quotes(phrase) << std::endl;
-		
 		else
 			std::cout << collapse_space(phrase) << std::endl;
 	}

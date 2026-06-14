@@ -2,8 +2,6 @@
 
 #include <string>
 
-std::string single_quotes(std::string& phrase);
-
-std::string double_quotes(std::string& phrase);
+std::string quotes(const std::string& phrase);
 
 std::string collapse_space(std::string& phrase);

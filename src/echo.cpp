@@ -5,17 +5,11 @@
 #include <iostream>
 #include <algorithm>
 
-std::string single_quotes(std::string& phrase) 
+
+std::string quotes(const std::string& phrase)
 {
-	phrase.erase(std::remove(phrase.begin(), phrase.end(), '\''), phrase.end());
-
-	return phrase;
-}
-
-
-std::string double_quotes(std::string& phrase)
-{
-	bool in_double_quotes{false};
+	bool in_double{false};
+	bool in_single{false};
 	bool last_was_space{true};
 
 	std::string result{""};
@@ -23,9 +17,12 @@ std::string double_quotes(std::string& phrase)
 	for(char c : phrase)
 	{
 		if(c == '"')
-			in_double_quotes = !in_double_quotes;
+			in_double = !in_double;
+		
+		else if(c == '\'')
+			in_single = !in_single;
 
-		else if(c == ' ' && !in_double_quotes)
+		else if(c == ' ' && !in_double && !in_single)
 		{
 			if(!last_was_space)
 				result += ' ';
