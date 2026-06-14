@@ -10,7 +10,7 @@
 
 namespace fs = std::filesystem;
 
-pid_t exec_program(const std::string& command, const std::string& input, const std::string& path)
+pid_t exec_program(const std::string& command, std::string& input, const std::string& path)
 {
 	std::stringstream path_ss(path);
 	std::string dir{""};
@@ -25,9 +25,7 @@ pid_t exec_program(const std::string& command, const std::string& input, const s
 
 		if(access(command_path.c_str(), X_OK)==0)
 		{
-			std::string no_quotes_input{single_quotes(input)};
-
-			std::stringstream input_ss(no_quotes_input);
+			std::stringstream input_ss(single_quotes(input));
 			
 			std::vector<char*> args;
 			std::vector<std::string> elements;
