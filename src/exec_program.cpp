@@ -25,14 +25,14 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 
 		if(access(command_path.c_str(), X_OK)==0)
 		{
-			std::stringstream input_ss(single_quotes(input));
+			std::stringstream input_ss(input);
 			
 			std::vector<char*> args;
 			std::vector<std::string> elements;
 			std::string el{""};
 
 
-			while(std::getline(input_ss, el, ' '))
+			while(std::getline(input_ss, el, '\''))
 				elements.push_back(el);
 			
 			for(std::string& e : elements)
