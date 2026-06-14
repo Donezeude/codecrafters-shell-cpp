@@ -9,9 +9,35 @@
 namespace fs = std::filesystem;
 
 
+std::vector<std::string> double_tokenize(const std::string& input)
+{
+	std::vector<std::string> elements;
+	std::string current;
+	bool in_quote{false};
 
+	for(char c : input)
+	{
+		if(c == '"')
+			in_quote == !in_quote;
 
-std::vector<std::string> tokenize(const std::string& input)
+		else if(c == ' ' && in_quote == false)
+		{
+			if(!current.empty())
+			{
+				elements.push_back(current);
+				current.clear();
+			}
+		}
+		else
+			current += c;
+	}
+	if(!current.empty())
+		elements.push_back(current);
+	
+	return elements;
+}
+
+std::vector<std::string> single_tokenize(const std::string& input)
 {
 	std::vector<std::string> elements;
 	std::string current;
@@ -65,9 +91,11 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 			std::vector<std::string> elements;
 			std::string el{""};
 
+			if(input.find('"') != std::string::npos)
+				elements = double_tokenize(input);
 
-			if(input.find('\'') != std::string::npos)
-				elements = tokenize(input);
+			else if(input.find('\'') != std::string::npos)
+				elements = single_tokenize(input);
 			else
 			{
 				while(std::getline(input_ss, el, ' '))
