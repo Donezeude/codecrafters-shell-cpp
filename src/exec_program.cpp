@@ -1,5 +1,5 @@
 #include "exec_program.hpp"
-
+#include <iostream>
 #include <string>
 #include <sstream>
 #include <sys/wait.h>
@@ -18,6 +18,7 @@ pid_t exec_program(const std::string& command, const std::string& input, const s
 
 	while(std::getline(path_ss, dir, ':') || std::getline(path_ss, dir, '\''))
 	{
+		std::cout << dir << std::endl;
 		fs::path formated_dir(dir);
 		fs::path command_path = formated_dir / command;
 
