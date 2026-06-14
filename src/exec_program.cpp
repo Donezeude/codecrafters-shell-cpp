@@ -16,7 +16,7 @@ pid_t exec_program(const std::string& command, const std::string& input, const s
 	std::vector<std::string> elements;
 	std::string el{""};
 
-	while(std::getline(path_ss, dir, ':'))
+	while(std::getline(path_ss, dir, ':') || std::getline(path_ss, dir, '\''))
 	{
 		fs::path formated_dir(dir);
 		fs::path command_path = formated_dir / command;
