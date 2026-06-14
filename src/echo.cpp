@@ -17,6 +17,7 @@ std::string double_quotes(std::string& phrase)
 {
 	phrase.erase(std::remove(phrase.begin(), phrase.end(), '\"'), phrase.end());
 	return phrase;
+}
 
 std::string collapse_space(std::string& phrase)
 {
