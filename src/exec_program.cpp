@@ -19,6 +19,7 @@ pid_t exec_program(const std::string& command, const std::string& input, const s
 	while(std::getline(path_ss, dir, ':') || std::getline(path_ss, dir, '\''))
 	{
 		std::cout << dir << std::endl;
+		std::cout << "hi im don" << std::endl;
 		fs::path formated_dir(dir);
 		fs::path command_path = formated_dir / command;
 
