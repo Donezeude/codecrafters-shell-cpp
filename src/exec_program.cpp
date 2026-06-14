@@ -1,7 +1,5 @@
 #include "exec_program.hpp"
-#include "echo.hpp"
 
-#include <iostream>
 #include <string>
 #include <sstream>
 #include <sys/wait.h>
@@ -9,6 +7,42 @@
 #include <vector>
 
 namespace fs = std::filesystem;
+
+
+
+
+std::vector<std::string> tokenize(const std::string& input)
+{
+	std::vector<std::string> elements;
+	std::string current;
+	bool in_quote{false};
+
+	for (c : input)
+	{
+		if(c == '\'')
+			in_quote = !in_quote;
+		else if(c == ' ' && in_quote == false) //if one quoted phrase is done and there is a gap
+		{
+			if(!current.empty())
+			{
+				elements.push_back(current);
+				current.clear();
+			}
+		}
+		else
+			current += c;
+	}
+	if(!current.empty())
+		elements.push_back(current);
+
+	return elements;
+}
+
+
+
+
+
+
 
 pid_t exec_program(const std::string& command, std::string& input, const std::string& path)
 {
@@ -33,15 +67,7 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 
 
 			if(input.find('\'') != std::string::npos)
-			{
-				while(std::getline(input_ss, el, '\''))
-				{
-					if(el == " ")
-						continue;
-
-					elements.push_back(el);
-				}
-			}
+				elements = tokenize(input);
 			else
 			{
 				while(std::getline(input_ss, el, ' '))
