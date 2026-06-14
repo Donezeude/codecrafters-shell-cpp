@@ -1,4 +1,6 @@
 #include "exec_program.hpp"
+#include "echo.hpp"
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -18,14 +20,14 @@ pid_t exec_program(const std::string& command, const std::string& input, const s
 
 	while(std::getline(path_ss, dir, ':'))
 	{
-		std::cout << dir << std::endl;
-		std::cout << "hi im don" << std::endl;
 		fs::path formated_dir(dir);
 		fs::path command_path = formated_dir / command;
 
 		if(access(command_path.c_str(), X_OK)==0)
 		{
-			std::stringstream input_ss(input);
+			std::string no_quotes_input{single_quotes(input)};
+
+			std::stringstream input_ss(no_quotes_input);
 			
 			std::vector<char*> args;
 			std::vector<std::string> elements;
