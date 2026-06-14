@@ -32,8 +32,21 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 			std::string el{""};
 
 
-			while(std::getline(input_ss, el, '\''))
-				elements.push_back(el);
+			if(input.find('\'') != std::string::npos)
+			{
+				while(std::getline(input_ss, el, '\''))
+				{
+					if(el == " ")
+						continue;
+
+					elements.push_back(el);
+				}
+			}
+			else
+			{
+				while(std::getline(input_ss, el, ' '))
+					elements.push_back(el);
+			}
 
 			for(const auto& tim : elements)
 			{ std::cout << tim << "      "; }
