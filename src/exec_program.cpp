@@ -17,7 +17,7 @@ std::vector<std::string> tokenize(const std::string& input)
 	std::string current;
 	bool in_quote{false};
 
-	for (c : input)
+	for (char c : input)
 	{
 		if(c == '\'')
 			in_quote = !in_quote;
