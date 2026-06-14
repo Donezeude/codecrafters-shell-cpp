@@ -22,7 +22,7 @@ std::string double_quotes(std::string& phrase)
 
 	for(char c : phrase)
 	{
-		if(c == '\"')
+		if(c == '"')
 			in_double_quotes = !in_double_quotes;
 
 		else if(c == ' ' && !in_double_quotes)
