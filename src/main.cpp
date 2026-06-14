@@ -1,6 +1,7 @@
 #include "type.hpp"
 #include "exec_program.hpp"
 #include "cd.hpp"
+#include "echo.hpp"
 
 
 #include <iostream>
@@ -38,7 +39,12 @@ int main() {
 		break;
 
 	else if(input.find("echo") == 0)
-		std::cout << phrase << std::endl;
+	{
+		if(phrase.find('\'') != std::string::npos)
+			std::cout << single_quotes(phrase) << std::endl;
+		else
+			std::cout << collapse_space(phrase) << std::endl;
+	}
 
 	else if(input.find("pwd") == 0)
 		std::cout << fs::current_path().string() << std::endl;

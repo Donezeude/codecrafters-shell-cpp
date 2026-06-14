@@ -6,7 +6,7 @@
 
 namespace fs = std::filesystem;
 
-fs::path change_dir(std::string phrase)
+fs::path change_dir(const std::string& phrase)
 {
 	const char* user = std::getenv("HOME"); //Linux/Mac
 	if (!user) user = std::getenv("USERPROFILE"); //Windows fallback
@@ -24,9 +24,4 @@ fs::path change_dir(std::string phrase)
 
 	else
 		return fs::path{};
-//	if(!fs::exists(phrase))
-//		return phrase + ": No such file or directory";
-//	if(phrase == "~")
-//	else if(phrase == "." || "./")
-//	else if(phrase == ".." || "../")
 }
