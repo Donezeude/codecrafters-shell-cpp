@@ -18,7 +18,7 @@ std::vector<std::string> double_tokenize(const std::string& input)
 	for(char c : input)
 	{
 		if(c == '"')
-			in_quote == !in_quote;
+			in_quote = !in_quote;
 
 		else if(c == ' ' && in_quote == false)
 		{
@@ -94,8 +94,8 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 			if(input.find('"') != std::string::npos)
 				elements = double_tokenize(input);
 
-//			else if(input.find('\'') != std::string::npos)
-//				elements = single_tokenize(input);
+			else if(input.find('\'') != std::string::npos)
+				elements = single_tokenize(input);
 			else
 			{
 				while(std::getline(input_ss, el, ' '))
