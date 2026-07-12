@@ -12,6 +12,12 @@ std::string single_quotes(std::string& phrase)
 	return phrase;
 }
 
+std::string backslash(std::string& phrase)
+{
+	phrase.erase(std::remove(phrase.begin(), phrase.end(), '\\'), phrase.end());
+	return phrase;
+}
+
 std::string double_quotes(const std::string& phrase)
 {
 	bool in_double{false};
@@ -59,3 +65,5 @@ std::string collapse_space(std::string& phrase)
 	}
 	return result;
 }
+
+

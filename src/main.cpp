@@ -1,7 +1,7 @@
-#include "type.hpp"
-#include "exec_program.hpp"
-#include "cd.hpp"
-#include "echo.hpp"
+#include "minors/type.hpp"
+#include "minors/exec_program.hpp"
+#include "minors/cd.hpp"
+#include "minors/echo.hpp"
 
 
 #include <iostream>
@@ -40,7 +40,10 @@ int main() {
 
 	else if(input.find("echo") == 0)
 	{
-		if(phrase.find('"') != std::string::npos)
+		if(phrase.find('\\') != std::string::npos)
+			std::cout << backslash(phrase) << std::endl;
+
+		else if(phrase.find('"') != std::string::npos)
 			std::cout << double_quotes(phrase) << std::endl;
 		
 		else if(phrase.find('\'') != std::string::npos)
