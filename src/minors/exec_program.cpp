@@ -66,7 +66,29 @@ std::vector<std::string> single_tokenize(const std::string& input)
 
 std::string exec_backslash(std::string& phrase)
 {
-	phrase.erase(std::remove(phrase.begin(), phrase.end(), '\\'), phrase.end());
+	std::string result;
+	result.reserve(phrase.size());
+
+	for(size_t i=0; i < phrase.size(); i++)
+	{
+		if(phrase[i] == '\\' && i + 1 < phrase.size())
+		{
+			char next = phrase[i+1];
+			if(next == '\\')
+			{
+				result += '\\';
+				++i;
+			}
+			else
+			{
+				result += next;
+				++i;
+			}	
+		}
+		else
+			result += phrase[i];
+	}
+	phrase = result;
 	return phrase;
 }
 
