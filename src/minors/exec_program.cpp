@@ -64,7 +64,11 @@ std::vector<std::string> single_tokenize(const std::string& input)
 	return elements;
 }
 
-
+std::string backslash(std::string& phrase)
+{
+	phrase.erase(std::remove(phrase.begin(), phrase.end(), '\\'), phrase.end());
+	return phrase;
+}
 
 
 
@@ -85,7 +89,7 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 
 		if(access(command_path.c_str(), X_OK)==0)
 		{
-			std::stringstream input_ss(input);
+			std::stringstream input_ss(backslash(input));
 			
 			std::vector<char*> args;
 			std::vector<std::string> elements;
