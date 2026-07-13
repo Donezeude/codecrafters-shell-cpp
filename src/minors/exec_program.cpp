@@ -76,7 +76,7 @@ std::string exec_backslash(std::string& phrase)
 		if(phrase[i] == '\'')
 		{
 			in_single = !in_single;
-			++i;
+			//++i;
 		}
 
 		if(phrase[i] == '\\' && i + 1 < phrase.size() && !in_single)
