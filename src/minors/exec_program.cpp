@@ -69,9 +69,17 @@ std::string exec_backslash(std::string& phrase)
 	std::string result;
 	result.reserve(phrase.size());
 
+	bool in_single{false};
+
 	for(size_t i=0; i < phrase.size(); i++)
 	{
-		if(phrase[i] == '\\' && i + 1 < phrase.size())
+		if(phrase[i] == '\'')
+		{
+			in_single = !in_single;
+			++i;
+		}
+
+		if(phrase[i] == '\\' && i + 1 < phrase.size() && !in_single)
 		{
 			char next = phrase[i+1];
 			if(next == '\\')
