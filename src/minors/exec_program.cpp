@@ -80,7 +80,7 @@ std::string exec_backslash(std::string& phrase)
 		if(phrase[i] == '\"' && !in_single)
 			in_double == !in_double;
 
-		if(phrase[i] == '\\' && i + 1 < phrase.size() && (!in_single || !in_double))
+		if(phrase[i] == '\\' && i + 1 < phrase.size() && (!in_single || in_double))
 		{
 			char next = phrase[i+1];
 			if(next == '\\')
