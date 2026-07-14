@@ -70,16 +70,17 @@ std::string exec_backslash(std::string& phrase)
 	result.reserve(phrase.size());
 
 	bool in_single{false};
+	bool in_double{false};
 
 	for(size_t i=0; i < phrase.size(); i++)
 	{
-		if(phrase[i] == '\'')
-		{
+		if(phrase[i] == '\'' && !in_double)
 			in_single = !in_single;
-			//++i;
-		}
 
-		if(phrase[i] == '\\' && i + 1 < phrase.size() && !in_single)
+		if(phrase[i] == '\"' && !in_single)
+			in_double == !in_double;
+
+		if(phrase[i] == '\\' && i + 1 < phrase.size() && (!in_single || !in_double))
 		{
 			char next = phrase[i+1];
 			if(next == '\\')
