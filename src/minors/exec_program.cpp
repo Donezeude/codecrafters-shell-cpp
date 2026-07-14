@@ -88,6 +88,11 @@ std::string exec_backslash(std::string& phrase)
 				result += '\\';
 				++i;
 			}
+			else if(next == '\"')
+			{
+				result += '\"';
+				++i;
+			}
 			else
 			{
 				result += next;
