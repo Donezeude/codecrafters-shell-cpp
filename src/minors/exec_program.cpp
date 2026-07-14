@@ -83,7 +83,7 @@ std::string exec_backslash(std::string& phrase)
 
 		if(phrase[i] == '\\' && i + 1 < phrase.size() && (!in_single || !in_double))
 		{
-			std::cout << phrase[i] << std::endl;
+			std::cout << in_double << std::endl;
 			char next = phrase[i+1];
 			if(next == '\\')
 			{
