@@ -90,7 +90,7 @@ std::string exec_backslash(std::string& phrase)
 		if(phrase[i] == '\"' && !in_single)
 			in_double = !in_double;
 
-		if(phrase[i] == '\\' && i + 1 < phrase.size() && (!in_single || !in_double))
+		if(phrase[i] == '\\' && i + 1 < phrase.size() && (!in_single))
 		{
 			char next = phrase[i+1];
 			if(next == '\\')
@@ -157,7 +157,7 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 
 		std::vector<char*> args;
 		args.reserve(elements.size() + 1);
-		
+
 		for(std::string& e : elements)
 			args.push_back(e.data());
 		args.push_back(nullptr);
