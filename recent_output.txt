@@ -1,0 +1,66 @@
+[compile] -- Running vcpkg install
+[compile] All requested packages are currently installed.
+[compile] All requested installations completed successfully in: 6.46 us
+[compile] -- Running vcpkg install - done
+[compile] -- Configuring done (0.0s)
+[compile] -- Generating done (0.0s)
+[compile] -- Build files have been written to: /app/build
+[compile] [ 16%] Building CXX object CMakeFiles/shell.dir/src/main.cpp.o
+[compile] [ 33%] Building CXX object CMakeFiles/shell.dir/src/minors/cd.cpp.o
+[compile] [ 50%] Building CXX object CMakeFiles/shell.dir/src/minors/echo.cpp.o
+[compile] [ 66%] Building CXX object CMakeFiles/shell.dir/src/minors/exec_program.cpp.o
+[compile] [ 83%] Building CXX object CMakeFiles/shell.dir/src/minors/type.cpp.o
+[compile] [100%] Linking CXX executable shell
+[compile] [100%] Built target shell
+[compile] Moved ./.codecrafters/run.sh → ./your_program.sh
+[compile] Compilation successful.
+[tester::#GU3] Running tests for Stage #GU3 (Quoting - Backslash within double quotes)
+[tester::#GU3] [setup] export PATH=/tmp/raspberry/apple/pear:$PATH
+[tester::#GU3] [setup] echo -n "orange pear." > "/tmp/ant/number 53"
+[tester::#GU3] [setup] echo -n "strawberry raspberry." > "/tmp/ant/doublequote \" 14"
+[tester::#GU3] [setup] echo "apple strawberry." > "/tmp/ant/backslash \\ 26"
+[tester::#GU3] Running ./your_program.sh
+[your-program] $ echo "shell'script'\\'test"
+[your-program] shell'script'\'test
+[tester::#GU3] ✓ Received expected response
+[your-program] $ echo "shell\"insidequotes"script\"
+[your-program] shell"insidequotesscript"
+[tester::#GU3] ✓ Received expected response
+[your-program] $ echo "mixed\"quote'hello'\\"
+[your-program] mixed"quote'hello'\
+[tester::#GU3] ✓ Received expected response
+[your-program] $ cat /tmp/ant/"number 53" /tmp/ant/"doublequote \" 14" /tmp/ant/"backslash \\ 26"
+[your-program]  c ca cat cat  cat / cat /t cat /tm cat /tmp cat /tmp/ cat /tmp/a cat /tmp/an cat /tmp/ant cat /tmp/ant/ cat /tmp/ant/"
+[tester::#GU3] ^ Line does not match expected value.
+[tester::#GU3] Expected: "orange pear.strawberry raspberry.apple strawberry."
+[tester::#GU3] Received: " c ca cat cat  cat / cat /t cat /tm cat /tmp cat /tmp/ cat /tmp/a cat /tmp/an cat /tmp/ant cat /tmp/ant/ cat /tmp/ant/""
+[your-program] cat /tmp/ant/"n cat /tmp/ant/"nu cat /tmp/ant/"num cat /tmp/ant/"numb cat /tmp/ant/"numbe cat /tmp/ant/"number cat /tmp/
+[your-program] ant/"number  cat /tmp/ant/"number 5 cat /tmp/ant/"number 53 cat /tmp/ant/"number 53" cat /tmp/ant/"number 53"  cat /tmp/
+[your-program] ant/"number 53" / cat /tmp/ant/"number 53" /t cat /tmp/ant/"number 53" /tm cat /tmp/ant/"number 53" /tmp cat /tmp/ant/"n
+[your-program] umber 53" /tmp/ cat /tmp/ant/"number 53" /tmp/a cat /tmp/ant/"number 53" /tmp/an cat /tmp/ant/"number 53" /tmp/ant cat /
+[your-program] tmp/ant/"number 53" /tmp/ant/ cat /tmp/ant/"number 53" /tmp/ant/" cat /tmp/ant/"number 53" /tmp/ant/"d cat /tmp/ant/"num
+[your-program] ber 53" /tmp/ant/"do cat /tmp/ant/"number 53" /tmp/ant/"dou cat /tmp/ant/"number 53" /tmp/ant/"doub cat /tmp/ant/"number
+[your-program]  53" /tmp/ant/"doubl cat /tmp/ant/"number 53" /tmp/ant/"double cat /tmp/ant/"number 53" /tmp/ant/"doubleq cat /tmp/ant/"
+[your-program] number 53" /tmp/ant/"doublequ cat /tmp/ant/"number 53" /tmp/ant/"doublequo cat /tmp/ant/"number 53" /tmp/ant/"doublequot
+[your-program]  cat /tmp/ant/"number 53" /tmp/ant/"doublequote cat /tmp/ant/"number 53" /tmp/ant/"doublequote " cat /tmp/ant/"number 53
+[your-program] " /tmp/ant/"doublequote "  cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 1 cat /tmp/ant/"number 53" /tmp/ant/"doubleq
+[your-program] uote " 14 cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14"  cat
+[your-program]  /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" / cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /t cat /tmp/ant
+[your-program] /"number 53" /tmp/ant/"doublequote " 14" /tm cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp cat /tmp/ant/"num
+[your-program] ber 53" /tmp/ant/"doublequote " 14" /tmp/ cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/a cat /tmp/ant/"numb
+[your-program] er 53" /tmp/ant/"doublequote " 14" /tmp/an cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/ant cat /tmp/ant/"n
+[your-program] umber 53" /tmp/ant/"doublequote " 14" /tmp/ant/ cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/ant/" cat /tmp
+[your-program] /ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/ant/"b cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/ant/"
+[your-program] ba cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/ant/"bac cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 1
+[your-program] 4" /tmp/ant/"back cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/ant/"backs cat /tmp/ant/"number 53" /tmp/ant
+[your-program] /"doublequote " 14" /tmp/ant/"backsl cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/ant/"backsla cat /tmp/ant
+[your-program] /"number 53" /tmp/ant/"doublequote " 14" /tmp/ant/"backslas cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/an
+[your-program] t/"backslash cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/ant/"backslash \ cat /tmp/ant/"number 53" /tmp/an
+[your-program] t/"doublequote " 14" /tmp/ant/"backslash \  cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/ant/"backslash \ 2
+[your-program]  cat /tmp/ant/"number 53" /tmp/ant/"doublequote " 14" /tmp/ant/"backslash \ 26 orange pear.cat: /tmp/ant/doublequote : N
+[your-program] o such file or directory
+[your-program] cat: 14 /tmp/ant/backslash: No such file or directory
+[your-program] cat: \: No such file or directory
+[your-program] cat: 26: No such file or directory
+[your-program] $ 
+[tester::#GU3] Test failed

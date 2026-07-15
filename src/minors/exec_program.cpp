@@ -79,7 +79,7 @@ std::string exec_backslash(std::string& phrase)
 			in_single = !in_single;
 
 		if(phrase[i] == '\"' && !in_single)
-			in_double == !in_double;
+			in_double = !in_double;
 
 		if(phrase[i] == '\\' && i + 1 < phrase.size() && (!in_single || !in_double))
 		{
@@ -102,7 +102,6 @@ std::string exec_backslash(std::string& phrase)
 		}
 		else
 		{
-			std::cout << result << " ";
 			result += phrase[i];
 		}
 	}
