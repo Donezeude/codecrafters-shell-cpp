@@ -16,8 +16,17 @@ std::vector<std::string> double_tokenize(const std::string& input)
 	std::string current;
 	bool in_quote{false};
 
-	for(char c : input)
+	for(size_t i=0; i<input.size(); i++)
 	{
+		char c = input[i];
+
+		if(c == '\\' && i + 1 < input.size() && (input[i+1] == '"' || input[i+1] == '\\'))
+		{
+			current += input[i+1];
+			++i;
+			continue;
+		}
+
 		if(c == '"')
 			in_quote = !in_quote;
 
@@ -81,7 +90,7 @@ std::string exec_backslash(std::string& phrase)
 		if(phrase[i] == '\"' && !in_single)
 			in_double = !in_double;
 
-		if(phrase[i] == '\\' && i + 1 < phrase.size() && !in_single)
+		if(phrase[i] == '\\' && i + 1 < phrase.size() && (!in_single || !in_double))
 		{
 			char next = phrase[i+1];
 			if(next == '\\')
@@ -118,44 +127,46 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 	std::stringstream path_ss(path);
 	std::string dir{""};
 
-	std::vector<std::string> elements;
-	std::string el{""};
-
 	while(std::getline(path_ss, dir, ':'))
 	{
 		fs::path formated_dir(dir);
 		fs::path command_path = formated_dir / command;
 
-		if(access(command_path.c_str(), X_OK)==0)
+		if(access(command_path.c_str(), X_OK) !=0 )
+			continue;
+
+			
+		std::vector<std::string> elements;
+	
+
+		if(input.find('"') != std::string::npos)
+			elements = double_tokenize(input);
+
+		else if(input.find('\'') != std::string::npos)
+			elements = single_tokenize(input);
+		else
 		{
-			std::stringstream input_ss(exec_backslash(input));
-			
-			std::vector<char*> args;
-			std::vector<std::string> elements;
+			std::stringstream input_ss(input);
 			std::string el{""};
-
-			if(input.find('"') != std::string::npos)
-				elements = double_tokenize(input);
-
-			else if(input.find('\'') != std::string::npos)
-				elements = single_tokenize(input);
-			else
-			{
-				while(std::getline(input_ss, el, ' '))
-					elements.push_back(el);
-			}
-
-			
-			for(std::string& e : elements)
-				args.push_back(e.data());
-			args.push_back(nullptr);
-
-			pid_t pid = fork();
-			if(pid == 0)
-				execv(command_path.c_str(), args.data());
-			else
-				return wait(nullptr);
+			while(std::getline(input_ss, el, ' '))
+				elements.push_back(el);
 		}
+	
+		for(std::string& e : elements)
+			exec_backslash(e);
+
+		std::vector<char*> args;
+		args.reserve(elements.size() + 1);
+		
+		for(std::string& e : elements)
+			args.push_back(e.data());
+		args.push_back(nullptr);
+
+		pid_t pid = fork();
+		if(pid == 0)
+			execv(command_path.c_str(), args.data());
+		else
+			return wait(nullptr);
 	}
 	return -1;
 }
