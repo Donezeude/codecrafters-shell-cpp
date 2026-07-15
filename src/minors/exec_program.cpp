@@ -150,10 +150,10 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 			std::string el{""};
 			while(std::getline(input_ss, el, ' '))
 				elements.push_back(el);
-
-			for(std::string& e : elements)   
-        		exec_backslash(e);
 		}
+	
+		for(std::string& e : elements)
+			exec_backslash(e);
 
 		std::vector<char*> args;
 		args.reserve(elements.size() + 1);
