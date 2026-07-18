@@ -20,7 +20,7 @@ std::vector<std::string> double_tokenize(const std::string& input)
 	{
 		char c = input[i];
 
-		if(c == '\\' && i + 1 < input.size() && (input[i+1] == '"'))
+		if(c == '\\' && i + 1 < input.size() && input[i+1] == '"')
 		{
 			current += input[i+1];
 			++i;
@@ -30,7 +30,7 @@ std::vector<std::string> double_tokenize(const std::string& input)
 		if(c == '"')
 			in_quote = !in_quote;
 
-		else if(c == ' ' && in_quote == false)
+		else if(c == ' ' && in_quote == false)  //if one quoted phrase is done and there is a gap
 		{
 			if(!current.empty())
 			{
@@ -53,10 +53,20 @@ std::vector<std::string> single_tokenize(const std::string& input)
 	std::string current;
 	bool in_quote{false};
 
-	for (char c : input)
+	for (size_t i=0; i<input.size(); i++)
 	{
+		char c = input[i];
+		
+		if(c == '\\' && i + 1 < input.size() && input[i+1] == '\'')
+		{
+			current += input[i+1];
+			++i;
+			continue;
+		}
+
 		if(c == '\'')
 			in_quote = !in_quote;
+
 		else if(c == ' ' && in_quote == false) //if one quoted phrase is done and there is a gap
 		{
 			if(!current.empty())
