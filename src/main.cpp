@@ -43,11 +43,17 @@ int main() {
 		if(phrase.find('\\') != std::string::npos)
 			std::cout << backslash(phrase) << std::endl;
 
-		else if(phrase.find('"') != std::string::npos)
-			std::cout << double_quotes(phrase) << std::endl;
+		else if(phrase.find('"') != std::string::npos || phrase.find('\'') != std::string::npos)
+		{
+			if( phrase.find('"') < phrase.find('\''))
+				std::cout << double_quotes(phrase) << std::endl;
+
+			else
+				std::cout << single_quotes(phrase) << std::endl;
+		}
 		
-		else if(phrase.find('\'') != std::string::npos)
-			std::cout << single_quotes(phrase) << std::endl;
+		// else if(phrase.find('\'') != std::string::npos)
+		// 	std::cout << single_quotes(phrase) << std::endl;
 
 		else
 			std::cout << collapse_space(phrase) << std::endl;
