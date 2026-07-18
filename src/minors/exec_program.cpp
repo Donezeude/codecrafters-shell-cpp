@@ -20,7 +20,7 @@ std::vector<std::string> double_tokenize(const std::string& input)
 	{
 		char c = input[i];
 
-		if(c == '\\' && i + 1 < input.size() && (input[i+1] == '"' || input[i+1] == '\\'))
+		if(c == '\\' && i + 1 < input.size() && (input[i+1] == '"'))
 		{
 			current += input[i+1];
 			++i;
