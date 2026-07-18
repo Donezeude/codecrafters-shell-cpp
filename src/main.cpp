@@ -53,10 +53,10 @@ int main() {
 
 		else
 		{
-			if( find_backslash < find_double && find_backslash < find_single)
+			if( find_backslash <= find_double && find_backslash <= find_single)
 				std::cout << backslash(phrase) << std::endl;
 
-			else if(find_double < find_single)
+			else if(find_double <= find_single)
 				std::cout << double_quotes(phrase) << std::endl;
 
 			else
