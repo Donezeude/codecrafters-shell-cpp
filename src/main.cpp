@@ -44,23 +44,25 @@ int main() {
 		size_t find_double    = phrase.find('"');
 		size_t find_single    = phrase.find('\'');
 
-		if(find_backslash != std::string::npos || find_double != std::string::npos || find_single != std::string::npos)
+		if(find_backslash == std::string::npos &&
+		   find_double    == std::string::npos && 
+		   find_single    == std::string::npos)
 		{
-			if(find_backslash != std::string::npos  && 
-			   (find_double == std::string::npos || find_single == std::string::npos ||
-			    find_backslash < find_single || find_double < find_single))
+			std::cout << collaps_space(phrase) << std::endl;
+		}
+
+		else
+		{
+			if( find_backslash < find_double && find_backslash < find_single)
 				std::cout << backslash(phrase) << std::endl;
 
-			else if(find_double  != std::string::npos && 
-				    (find_single == std::string::npos || find_double < find_single))
+			else if(find_double < find_single)
 				std::cout << double_quotes(phrase) << std::endl;
 
 			else
 				std::cout << single_quotes(phrase) << std::endl;
 		}
-		
-		else
-			std::cout << collapse_space(phrase) << std::endl;
+
 	}
 
 	else if(input.find("pwd") == 0)
