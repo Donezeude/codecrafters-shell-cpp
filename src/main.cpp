@@ -46,7 +46,7 @@ int main() {
 
 		if(find_backslash != std::string::npos || find_double != std::string::npos || find_single != std::string::npos)
 		{
-			if(find_backslash < find_single || find_double < find_single)
+			if(find_backslash <= find_single || find_double <= find_single)
 				std::cout << backslash(phrase) << std::endl;
 
 			else if(find_double  != std::string::npos && 
