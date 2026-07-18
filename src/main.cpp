@@ -53,7 +53,7 @@ int main() {
 
 			else if(find_double  != std::string::npos && 
 				    (find_single == std::string::npos || find_double < find_single))
-				std::cout << backslash(phrase) << std::endl;
+				std::cout << double_quotes(phrase) << std::endl;
 
 			else
 				std::cout << single_quotes(phrase) << std::endl;

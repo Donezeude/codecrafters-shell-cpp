@@ -56,13 +56,6 @@ std::vector<std::string> single_tokenize(const std::string& input)
 	for (size_t i=0; i<input.size(); i++)
 	{
 		char c = input[i];
-		
-		// if(c == '\\' && i + 1 < input.size() && input[i+1] == '\'')
-		// {
-		// 	current += input[i+1];
-		// 	++i;
-		// 	continue;
-		// }
 
 		if(c == '\'')
 			in_quote = !in_quote;
