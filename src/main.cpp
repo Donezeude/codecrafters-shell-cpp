@@ -40,21 +40,27 @@ int main() {
 
 	else if(input.find("echo") == 0)
 	{
-		if(phrase.find('\\') != std::string::npos)
-			std::cout << backslash(phrase) << std::endl;
+		size_t find_backslash = phrase.find('\\');
+		size_t find_double    = phrase.find('"');
+		size_t find_single    = phrase.find('\'');
 
-		else if(phrase.find('"') != std::string::npos || phrase.find('\'') != std::string::npos)
+		if(find_backslash != std::string::npos || 
+		   find_double    != std::string::npos ||
+		   find_single    != std::string::npos)
 		{
-			if( phrase.find('"') < phrase.find('\''))
-				std::cout << double_quotes(phrase) << std::endl;
+			if(find_backslash != std::string::npos  && 
+			   (find_double == std::string::npos || find_single == std::string::npos ||
+			   (find_backslash < find_double && find_backslash < find_single)))
+				std::cout << backslash(phrase) << std::endl;
+
+			else if(find_double  != std::string::npos && 
+				    (find_single == std::string::npos || find_double < find_single))
+				std::cout << backslash(phrase) << std::endl;
 
 			else
 				std::cout << single_quotes(phrase) << std::endl;
 		}
 		
-		// else if(phrase.find('\'') != std::string::npos)
-		// 	std::cout << single_quotes(phrase) << std::endl;
-
 		else
 			std::cout << collapse_space(phrase) << std::endl;
 	}
