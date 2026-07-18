@@ -48,7 +48,7 @@ int main() {
 		   find_double    == std::string::npos && 
 		   find_single    == std::string::npos)
 		{
-			std::cout << collaps_space(phrase) << std::endl;
+			std::cout << collapse_space(phrase) << std::endl;
 		}
 
 		else
