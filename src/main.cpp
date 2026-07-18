@@ -44,9 +44,7 @@ int main() {
 		size_t find_double    = phrase.find('"');
 		size_t find_single    = phrase.find('\'');
 
-		if(find_backslash != std::string::npos || 
-		   find_double    != std::string::npos ||
-		   find_single    != std::string::npos)
+		if(find_backslash != std::string::npos || find_double != std::string::npos || find_single != std::string::npos)
 		{
 			if(find_backslash != std::string::npos  && 
 			   (find_double == std::string::npos || find_single == std::string::npos ||

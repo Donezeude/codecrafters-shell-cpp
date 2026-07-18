@@ -150,7 +150,11 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 	
 
 		if(input.find('"') != std::string::npos)
+		{
 			elements = double_tokenize(input);
+			for(std::string& e : elements)
+				exec_backslash(e);
+		}
 
 		else if(input.find('\'') != std::string::npos)
 			elements = single_tokenize(input);
@@ -160,10 +164,11 @@ pid_t exec_program(const std::string& command, std::string& input, const std::st
 			std::string el{""};
 			while(std::getline(input_ss, el, ' '))
 				elements.push_back(el);
+			
+			for(std::string& e : elements)
+				exec_backslash(e);
 		}
 	
-		for(std::string& e : elements)
-			exec_backslash(e);
 
 		std::vector<char*> args;
 		args.reserve(elements.size() + 1);
